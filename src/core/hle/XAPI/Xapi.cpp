@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#define LOG_PREFIX CXBXR_MODULE::XAPI //This is a comment to add the file to my fork
+#define LOG_PREFIX CXBXR_MODULE::XAPI
 
 
 

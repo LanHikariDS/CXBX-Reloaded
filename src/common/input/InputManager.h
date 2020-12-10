@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#ifndef INPUTMANAGER_H_ //This is a comment to add the file to my fork
+#ifndef INPUTMANAGER_H_
 #define INPUTMANAGER_H_
 
 #include <thread>

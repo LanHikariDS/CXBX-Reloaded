@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#include "windows.h" //This is a comment to add the file to my fork
+#include "windows.h"
 #include "DlgDukeControllerConfig.h"
 #include "resource/ResCxbx.h"
 #include "input\InputManager.h"

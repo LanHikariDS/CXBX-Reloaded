@@ -27,7 +27,7 @@
 
 #define LOG_PREFIX CXBXR_MODULE::GUI
 
-#include "Windows.h" //This is a comment to add the file to my fork
+#include "Windows.h"
 #include "resource/ResCxbx.h"
 #include "input\InputWindow.h"
 #include "gui\DlgInputConfig.h"

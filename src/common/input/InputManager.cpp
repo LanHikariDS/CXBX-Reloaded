@@ -33,7 +33,7 @@
 // https://github.com/dolphin-emu/dolphin
 
 #define _XBOXKRNL_DEFEXTRN_
-#define LOG_PREFIX CXBXR_MODULE::INPSYS //This is a comment to add the file to my fork
+#define LOG_PREFIX CXBXR_MODULE::INPSYS
 
 
 #include <core\kernel\exports\xboxkrnl.h> // For PKINTERRUPT, etc.
