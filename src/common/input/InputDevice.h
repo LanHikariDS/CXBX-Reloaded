@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#ifndef INPUT_DEVICE //This is a comment to add the file to my fork
+#ifndef INPUT_DEVICE
 #define INPUT_DEVICE
 
 #include <string>
