@@ -119,7 +119,7 @@ bool ConstructHleInputDevice(int Type, int Port)
 		g_XboxControllerHostBridge[Port].bSignaled = false;
 		g_XboxControllerHostBridge[Port].bIoInProgress = false;
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucType = XINPUT_DEVTYPE_GAMEPAD;
-		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD_ALT;
+		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD;
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucInputStateSize = sizeof(XpadInput);
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucFeedbackSize = sizeof(XpadOutput);
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.dwPacketNumber = 0;
