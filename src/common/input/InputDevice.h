@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#ifndef INPUT_DEVICE
+#ifndef INPUT_DEVICE //This is a comment to add the file to my fork
 #define INPUT_DEVICE
 
 #include <string>
@@ -58,11 +58,11 @@ typedef enum class _XBOX_INPUT_DEVICE : int {
 	DEVICE_INVALID = -1,
 	MS_CONTROLLER_DUKE,
 	MS_CONTROLLER_S,
+	STEEL_BATTALION_CONTROLLER,
 	LIGHT_GUN,
 	STEERING_WHEEL,
 	MEMORY_UNIT,
 	IR_DONGLE,
-	STEEL_BATTALION_CONTROLLER,
 	DEVICE_MAX,
 }
 XBOX_INPUT_DEVICE;

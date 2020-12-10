@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#ifndef INPUTMANAGER_H_
+#ifndef INPUTMANAGER_H_ //This is a comment to add the file to my fork
 #define INPUTMANAGER_H_
 
 #include <thread>
@@ -48,6 +48,7 @@ static input_controller input_support_list[] = {
 	{ XBOX_INPUT_DEVICE::DEVICE_INVALID, "None" },
 	{ XBOX_INPUT_DEVICE::MS_CONTROLLER_DUKE, "MS Controller Duke" },
 	{ XBOX_INPUT_DEVICE::MS_CONTROLLER_S, "MS Controller S" },
+	{ XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER, "Steel Battalion Controller" },
 };
 
 #pragma pack(1)
@@ -62,7 +63,21 @@ struct XpadInput {
 	int16_t sThumbRY;
 };
 
+struct SBCInput { //I'm not quite sure how this works, but it should come out to 0x18
+	uint16_t wButtons;
+	uint8_t bAnalogButtons[8];
+	int16_t sThumbLX;
+	int16_t sThumbLY;
+	int16_t sThumbRX;
+	int16_t sThumbRY;
+};
+
 struct XpadOutput {
+	uint16_t left_actuator_strength;
+	uint16_t right_actuator_strength;
+};
+
+struct SBCOutput { //Likewise, with 0x14
 	uint16_t left_actuator_strength;
 	uint16_t right_actuator_strength;
 };

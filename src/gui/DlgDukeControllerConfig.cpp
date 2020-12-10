@@ -27,7 +27,7 @@
 
 #define LOG_PREFIX CXBXR_MODULE::GUI
 
-#include "Windows.h"
+#include "Windows.h" //This is a comment to add the file to my fork
 #include "resource/ResCxbx.h"
 #include "input\InputWindow.h"
 #include "gui\DlgInputConfig.h"
@@ -50,7 +50,8 @@ INT_PTR CALLBACK DlgXidControllerConfigProc(HWND hWndDlg, UINT uMsg, WPARAM wPar
 
 		// Ensure that the controller type is valid
 		assert(dev_type == to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_DUKE) ||
-			dev_type == to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_S));
+			dev_type == to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_S) ||
+			dev_type == to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER));
 
 		g_InputWindow = new InputWindow;
 		g_InputWindow->Initialize(hWndDlg, port_num, dev_type);

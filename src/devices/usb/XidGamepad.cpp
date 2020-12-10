@@ -203,6 +203,38 @@ static const XIDDesc desc_xid_xbox_gamepad = {
 	{ 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF }  // wAlternateProductIds
 };
 
+static const USBDescConfig desc_config_SBC_gamepad = {
+	1,     // bNumInterfaces
+	1,     // bConfigurationValue
+	0,     // iConfiguration
+	0x80,  // bmAttributes
+	250,    // bMaxPower
+	1,     // nif
+	&desc_iface_xbox_gamepad
+};
+
+static const USBDescDevice desc_device_SBC_gamepad = {
+	0x0110,   // bcdUSB
+	0,        // bDeviceClass
+	0,        // bDeviceSubClass
+	0,        // bDeviceProtocol
+	0x40,     // bMaxPacketSize0
+	1,        // bNumConfigurations
+	&desc_config_SBC_gamepad
+};
+
+static const USBDesc desc_SBC_gamepad = {
+	{
+		0x0a7b,            // idVendor
+		0xd000,            // idProduct
+		0x0100,            // bcdDevice
+		STR_MANUFACTURER,  // iManufacturer
+		STR_PRODUCT,       // iProduct
+		STR_SERIALNUMBER   // iSerialNumber
+	},
+	&desc_device_SBC_gamepad
+};
+
 int XidGamepad::Init(int port)
 {
 	if (port > 4 || port < 1) { return -1; }
@@ -242,7 +274,7 @@ XboxDeviceState* XidGamepad::ClassInitFn()
 		m_pPeripheralFuncStruct->handle_destroy = std::bind(&XidGamepad::UsbXid_HandleDestroy, this);
 		m_pPeripheralFuncStruct->handle_attach  = std::bind(&XidGamepad::UsbXid_Attach, this, _1);
 		m_pPeripheralFuncStruct->product_desc   = dev->ProductDesc.c_str();
-		m_pPeripheralFuncStruct->usb_desc       = &desc_xbox_gamepad;
+		m_pPeripheralFuncStruct->usb_desc       = &desc_SBC_gamepad; //Put split for SBC controller type
 	}
 
 	return dev;

@@ -25,7 +25,7 @@
 // *
 // ******************************************************************
 
-#define LOG_PREFIX CXBXR_MODULE::XAPI
+#define LOG_PREFIX CXBXR_MODULE::XAPI //This is a comment to add the file to my fork
 
 
 
@@ -80,7 +80,8 @@ bool operator==(xbox::PXPP_DEVICE_TYPE XppType, XBOX_INPUT_DEVICE XidType)
 	switch (XidType)
 	{
 	case XBOX_INPUT_DEVICE::MS_CONTROLLER_DUKE:
-    case XBOX_INPUT_DEVICE::MS_CONTROLLER_S: {
+    case XBOX_INPUT_DEVICE::MS_CONTROLLER_S:
+    case XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER: {
 		if (XppType == g_DeviceType_Gamepad) {
 			return true;
 		}
@@ -91,7 +92,6 @@ bool operator==(xbox::PXPP_DEVICE_TYPE XppType, XBOX_INPUT_DEVICE XidType)
 	case XBOX_INPUT_DEVICE::STEERING_WHEEL:
 	case XBOX_INPUT_DEVICE::MEMORY_UNIT:
 	case XBOX_INPUT_DEVICE::IR_DONGLE:
-	case XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER:
 	default:
 		break;
 	}
@@ -119,7 +119,7 @@ bool ConstructHleInputDevice(int Type, int Port)
 		g_XboxControllerHostBridge[Port].bSignaled = false;
 		g_XboxControllerHostBridge[Port].bIoInProgress = false;
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucType = XINPUT_DEVTYPE_GAMEPAD;
-		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD;
+		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD_ALT;
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucInputStateSize = sizeof(XpadInput);
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucFeedbackSize = sizeof(XpadOutput);
 		g_XboxControllerHostBridge[Port].XboxDeviceInfo.dwPacketNumber = 0;
@@ -140,7 +140,17 @@ bool ConstructHleInputDevice(int Type, int Port)
     }
 	break;
 	case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
-		// TODO
+		g_XboxControllerHostBridge[Port].XboxPort = Port;
+        g_XboxControllerHostBridge[Port].XboxType = XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER;
+        g_XboxControllerHostBridge[Port].InState = new XpadInput();
+        g_XboxControllerHostBridge[Port].bPendingRemoval = false;
+        g_XboxControllerHostBridge[Port].bSignaled = false;
+        g_XboxControllerHostBridge[Port].bIoInProgress = false;
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucType = XINPUT_DEVTYPE_STEELBATTALION;
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD_ALT;
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucInputStateSize = sizeof(SBCInput);
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucFeedbackSize = sizeof(SBCOutput);
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.dwPacketNumber = 0;
 	}
 	break;
 
@@ -224,8 +234,8 @@ void SetupXboxDeviceTypes()
                     g_DeviceType_Gamepad = deviceTable[i]->XppType;
                     printf("XDEVICE_TYPE_GAMEPAD)\n");
                     break;
-                case XINPUT_DEVTYPE_STEELBATALION:
-                    printf("XDEVICE_TYPE_STEELBATALION)\n");
+                case XINPUT_DEVTYPE_STEELBATTALION:
+                    printf("XDEVICE_TYPE_STEELBATTALION)\n");
                     break;
 				default:
 					printf("Unknown device type)\n");
@@ -517,6 +527,9 @@ char * XboxSBCFeedbackNames[] = {
     "Ignition",
     "Start",
     "OpenClose",
+	"RightJoyMainWeapon",
+	"RightJoyLockOn",
+	"RightJoyFire",
     "MapZoomInOut",
     "ModeSelect",
     "SubMonitorModeSelect",
@@ -555,10 +568,10 @@ char * XboxSBCFeedbackNames[] = {
 //keep last SBC_GAMEPAD status, for DIP switch and GearLever
 xbox::X_SBC_GAMEPAD XboxSBCGamepad = {};
 
-//virtual SteelBatalion controller GetState, using port 0 from XInput and DirectInput to emulate virtual controller.
+//virtual SteelBattalion controller GetState, using port 0 from XInput and DirectInput to emulate virtual controller.
 void EmuSBCGetState(xbox::PX_SBC_GAMEPAD pSBCGamepad, xbox::PXINPUT_GAMEPAD pXIGamepad, xbox::PXINPUT_GAMEPAD pDIGamepad)
 {
-    // Now convert those values to SteelBatalion Gamepad
+    // Now convert those values to SteelBattalion Gamepad
 
     //restore certain variables such as GerLever and Toggle Switches.
 

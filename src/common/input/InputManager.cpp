@@ -33,7 +33,7 @@
 // https://github.com/dolphin-emu/dolphin
 
 #define _XBOXKRNL_DEFEXTRN_
-#define LOG_PREFIX CXBXR_MODULE::INPSYS
+#define LOG_PREFIX CXBXR_MODULE::INPSYS //This is a comment to add the file to my fork
 
 
 #include <core\kernel\exports\xboxkrnl.h> // For PKINTERRUPT, etc.
@@ -60,7 +60,7 @@ int Gui2XboxPortArray[4] = {
 int dev_num_buttons[to_underlying(XBOX_INPUT_DEVICE::DEVICE_MAX)] = {
 	XBOX_CTRL_NUM_BUTTONS, // MS_CONTROLLER_DUKE
 	XBOX_CTRL_NUM_BUTTONS, // MS_CONTROLLER_S
-	0,
+	XBOX_CTRL_NUM_BUTTONS, // STEEL_BATTALION_CONTROLLER This probably isn't correct?? Let's see what happens
 	0,
 	0,
 	0,
@@ -347,7 +347,8 @@ bool InputDeviceManager::UpdateXboxPortInput(int usb_port, void* Buffer, int Dir
 				switch (xid_type)
 				{
 				case to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_DUKE):
-                case to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_S): {
+                case to_underlying(XBOX_INPUT_DEVICE::MS_CONTROLLER_S):
+				case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
 					has_changed = UpdateInputXpad(dev_ptr, Buffer, Direction);
 				}
 				break;
@@ -355,8 +356,7 @@ bool InputDeviceManager::UpdateXboxPortInput(int usb_port, void* Buffer, int Dir
 				case to_underlying(XBOX_INPUT_DEVICE::LIGHT_GUN):
 				case to_underlying(XBOX_INPUT_DEVICE::STEERING_WHEEL):
 				case to_underlying(XBOX_INPUT_DEVICE::MEMORY_UNIT):
-				case to_underlying(XBOX_INPUT_DEVICE::IR_DONGLE):
-				case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
+				case to_underlying(XBOX_INPUT_DEVICE::IR_DONGLE): {
 					EmuLog(LOG_LEVEL::WARNING, "An unsupported device is attached at port %d! The device was %s",
 						Gui2XboxPortArray[usb_port], GetInputDeviceName(xid_type).c_str());
 				}
