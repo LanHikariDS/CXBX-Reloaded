@@ -63,6 +63,11 @@ struct XpadInput {
 	int16_t sThumbRY;
 };
 
+struct XpadOutput {
+	uint16_t left_actuator_strength;
+	uint16_t right_actuator_strength;
+};
+
 struct SBCInput { //I'm not quite sure how this works, but it should come out to 0x18
 	uint16_t wButtons;
 	uint8_t bAnalogButtons[8];
@@ -70,11 +75,6 @@ struct SBCInput { //I'm not quite sure how this works, but it should come out to
 	int16_t sThumbLY;
 	int16_t sThumbRX;
 	int16_t sThumbRY;
-};
-
-struct XpadOutput {
-	uint16_t left_actuator_strength;
-	uint16_t right_actuator_strength;
 };
 
 struct SBCOutput { //Likewise, with 0x14

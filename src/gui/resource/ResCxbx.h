@@ -307,6 +307,8 @@
 #define IDC_INPUT_OPTIONS               1305
 #define IDC_MOUSE_RANGE                 1306
 #define IDC_WHEEL_RANGE                 1307
+#define IDC_BTN_LOCK_ON                 1308
+#define IDC_BTN_MAIN_WEAPON             1309
 #define ID_FILE_EXIT                    40005
 #define ID_HELP_ABOUT                   40008
 #define ID_EMULATION_START              40009

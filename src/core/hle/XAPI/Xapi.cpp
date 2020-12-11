@@ -142,7 +142,7 @@ bool ConstructHleInputDevice(int Type, int Port)
 	case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
 		g_XboxControllerHostBridge[Port].XboxPort = Port;
         g_XboxControllerHostBridge[Port].XboxType = XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER;
-        g_XboxControllerHostBridge[Port].InState = new XpadInput();
+        g_XboxControllerHostBridge[Port].InState = new SBCInput();
         g_XboxControllerHostBridge[Port].bPendingRemoval = false;
         g_XboxControllerHostBridge[Port].bSignaled = false;
         g_XboxControllerHostBridge[Port].bIoInProgress = false;

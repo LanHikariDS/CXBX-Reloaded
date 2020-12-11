@@ -60,11 +60,11 @@ int Gui2XboxPortArray[4] = {
 int dev_num_buttons[to_underlying(XBOX_INPUT_DEVICE::DEVICE_MAX)] = {
 	XBOX_CTRL_NUM_BUTTONS, // MS_CONTROLLER_DUKE
 	XBOX_CTRL_NUM_BUTTONS, // MS_CONTROLLER_S
+	0,
+	0,
+	0,
+	0,
 	XBOX_CTRL_NUM_BUTTONS, // STEEL_BATTALION_CONTROLLER This probably isn't correct?? Let's see what happens
-	0,
-	0,
-	0,
-	0,
 };
 
 extern CXBX_CONTROLLER_HOST_BRIDGE g_XboxControllerHostBridge[4]; // hle xinput
