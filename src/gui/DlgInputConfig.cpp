@@ -27,6 +27,7 @@
 
 #include "windows.h"
 #include "DlgDukeControllerConfig.h"
+#include "DlgSBControllerConfig.h"
 #include "resource/ResCxbx.h"
 #include "input\InputManager.h"
 #include "Logging.h"
@@ -189,7 +190,7 @@ INT_PTR CALLBACK DlgInputConfigProc(HWND hWndDlg, UINT uMsg, WPARAM wParam, LPAR
 				break;
 
 				case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
-					DialogBoxParam(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDD_VIRTUAL_SBC_FEEDBACK), hWndDlg, DlgXidControllerConfigProc,
+					DialogBoxParam(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDD_VIRTUAL_SBC_FEEDBACK), hWndDlg, DlgSBControllerConfigProc,
 						(DeviceType << 8) | port);
 				}
 				break;
