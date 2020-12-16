@@ -520,7 +520,7 @@ xbox::dword_xt WINAPI xbox::EMUPATCH(XInputGetCapabilities)
 	RETURN(ret);
 }
 
-//variable names correlated to X_SBC_FEEDBACK, mapped to each nibble accordingly.
+//variable names correlated to SBC_FEEDBACK, mapped to each nibble accordingly.
 char * XboxSBCFeedbackNames[] = {
     "EmergencyEject",
     "CockpitHatch",
@@ -566,10 +566,10 @@ char * XboxSBCFeedbackNames[] = {
 };
 
 //keep last SBC_GAMEPAD status, for DIP switch and GearLever
-xbox::X_SBC_GAMEPAD XboxSBCGamepad = {};
+xbox::SBC_GAMEPAD XboxSBCGamepad = {};
 
 //virtual SteelBattalion controller GetState, using port 0 from XInput and DirectInput to emulate virtual controller.
-void EmuSBCGetState(xbox::PX_SBC_GAMEPAD pSBCGamepad, xbox::PXINPUT_GAMEPAD pXIGamepad, xbox::PXINPUT_GAMEPAD pDIGamepad)
+void EmuSBCGetState(xbox::PSBC_GAMEPAD pSBCGamepad, xbox::PXINPUT_GAMEPAD pXIGamepad, xbox::PXINPUT_GAMEPAD pDIGamepad)
 {
     // Now convert those values to SteelBattalion Gamepad
 
