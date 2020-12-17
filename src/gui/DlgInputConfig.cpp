@@ -188,6 +188,12 @@ INT_PTR CALLBACK DlgInputConfigProc(HWND hWndDlg, UINT uMsg, WPARAM wParam, LPAR
 				}
 				break;
 
+				case to_underlying(XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER): {
+					DialogBoxParam(GetModuleHandle(nullptr), MAKEINTRESOURCE(IDD_VIRTUAL_SBC_FEEDBACK), hWndDlg, DlgXidControllerConfigProc,
+						(DeviceType << 8) | port);
+				}
+				break;
+
 				default:
 					break;
 				}

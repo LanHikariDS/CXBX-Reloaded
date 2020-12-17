@@ -145,7 +145,7 @@ typedef struct _XINPUT_GAMEPAD
 XINPUT_GAMEPAD, *PXINPUT_GAMEPAD;
 
 // ******************************************************************
-// * X_SBC_GAMEPAD for xbox SteelBatalion GAMEPAD struc 
+// * X_SBC_GAMEPAD for xbox SteelBattalion GAMEPAD struc 
 // ******************************************************************
 typedef struct _X_SBC_GAMEPAD {
     xbox::word_xt    wButtons[3];
@@ -201,8 +201,8 @@ XINPUT_CAPABILITIES, *PXINPUT_CAPABILITIES;
 // ******************************************************************
 // all game controller use 0x01 GAMEPAD device type. then specify the subtype in returned Capabilities when XInputGetCapabilities called.
 #define XINPUT_DEVTYPE_GAMEPAD              0x01
-// SteelBatalion controller is the only one with special device type other than 1.
-#define XINPUT_DEVTYPE_STEELBATALION        0x80
+// SteelBattalion controller is the only one with special device type other than 1.
+#define XINPUT_DEVTYPE_STEELBATTALION        0x80
 
 // ******************************************************************
 // * Device XBOX Input Device SubTypes, for use in XINPUT_CAPABILITIES
