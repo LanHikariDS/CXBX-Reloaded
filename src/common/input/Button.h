@@ -32,6 +32,8 @@
 #include <string>
 
 #define XBOX_CTRL_NUM_BUTTONS 25
+#define SBC_NUM_BUTTONS 65
+#define HIGHEST_NUM_BUTTONS SBC_NUM_BUTTONS
 
 
 /* Represents the gui buttons of the xbox device currently being configured */

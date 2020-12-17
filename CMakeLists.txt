@@ -58,7 +58,7 @@ file (GLOB CXBXR_HEADER_COMMON
  "${CXBXR_ROOT_DIR}/src/common/Error.h"
  "${CXBXR_ROOT_DIR}/src/common/input/DInputKeyboardCodes.h"
  "${CXBXR_ROOT_DIR}/src/common/input/DInputKeyboardMouse.h"
- "${CXBXR_ROOT_DIR}/src/common/input/layout_xbox_controller.h"
+ "${CXBXR_ROOT_DIR}/src/common/input/layout_xbox_device.h"
  "${CXBXR_ROOT_DIR}/src/common/input/InputDevice.h"
  "${CXBXR_ROOT_DIR}/src/common/input/InputManager.h"
  "${CXBXR_ROOT_DIR}/src/common/input/SdlJoystick.h"
