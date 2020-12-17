@@ -80,6 +80,7 @@ file (GLOB CXBXR_HEADER_COMMON
  "${CXBXR_ROOT_DIR}/src/common/win32/EmuShared.h"
  "${CXBXR_ROOT_DIR}/src/common/win32/Mutex.h"
  "${CXBXR_ROOT_DIR}/src/common/win32/Threads.h"
+ "${CXBXR_ROOT_DIR}/src/common/win32/WineEnv.h"
  "${CXBXR_ROOT_DIR}/src/common/xbdm/CxbxXbdm.h"
  "${CXBXR_ROOT_DIR}/src/common/xbe/Xbe.h"
  "${CXBXR_ROOT_DIR}/src/common/xbe/XbePrinter.h"
@@ -105,7 +106,6 @@ file (GLOB CXBXR_HEADER_GUIv1
  "${CXBXR_ROOT_DIR}/src/gui/DlgLoggingConfig.h"
  "${CXBXR_ROOT_DIR}/src/gui/DlgNetworkConfig.h"
  "${CXBXR_ROOT_DIR}/src/gui/DlgVideoConfig.h"
- "${CXBXR_ROOT_DIR}/src/gui/ResCxbx.h"
  "${CXBXR_ROOT_DIR}/src/gui/Wnd.h"
  "${CXBXR_ROOT_DIR}/src/gui/WndMain.h"
 )
@@ -219,6 +219,7 @@ file (GLOB CXBXR_SOURCE_COMMON
  "${CXBXR_ROOT_DIR}/src/common/win32/IPCWindows.cpp"
  "${CXBXR_ROOT_DIR}/src/common/win32/Mutex.cpp"
  "${CXBXR_ROOT_DIR}/src/common/win32/Threads.cpp"
+ "${CXBXR_ROOT_DIR}/src/common/win32/WineEnv.cpp"
  "${CXBXR_ROOT_DIR}/src/common/xbdm/CxbxXbdm.cpp"
  "${CXBXR_ROOT_DIR}/src/common/xbe/Xbe.cpp"
  "${CXBXR_ROOT_DIR}/src/common/xbe/XbePrinter.cpp"
@@ -379,7 +380,6 @@ add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/projects/cxbxr-emu")
 # for some reason did not put the files into virtual folder?
 # Might need to put the list in the source folder for workaround fix.
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio ([^9]|[9][0-9])")
-  #add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/projects/debugger")
   add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/src/CxbxDebugger")
 endif()
 
@@ -389,16 +389,12 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 endif()
 
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio ([^9]|[9][0-9])")
-  # Refuse to exclude due to install is not set to optional
-  #set_target_properties(cstool
-  # PROPERTIES EXCLUDE_FROM_ALL TRUE
-  #)
   set_target_properties(Tests_cs_x86
    PROPERTIES EXCLUDE_FROM_ALL TRUE
   )
 
   # Cxbx-Debugger project with third-party libraries
-  set_target_properties(cxbxr-debugger cs_x86 Tests_cs_x86 capstone-shared cstool
+  set_target_properties(cxbxr-debugger cs_x86 Tests_cs_x86 capstone-shared
    PROPERTIES FOLDER Cxbx-Reloaded/debugger
   )
 endif()

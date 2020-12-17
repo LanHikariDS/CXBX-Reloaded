@@ -61,6 +61,7 @@ PFARPROC1 fnCxbxVSBCOpen;
 //typedef DWORD(*fnCxbxVSBCSetState)(UCHAR *);
 //typedef DWORD(*fnCxbxVSBCGetState)(UCHAR *);
 xbox::PXPP_DEVICE_TYPE g_DeviceType_Gamepad = nullptr;
+xbox::PXPP_DEVICE_TYPE g_DeviceType_SBC = nullptr; //deviceTable[i]->XppType?
 
 // Flag is unset after initialize devices is done by simulate LLE USB thread.
 std::atomic<bool> g_bIsDevicesInitializing = true;
@@ -83,6 +84,13 @@ bool operator==(xbox::PXPP_DEVICE_TYPE XppType, XBOX_INPUT_DEVICE XidType)
     case XBOX_INPUT_DEVICE::MS_CONTROLLER_S:
     case XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER: {
 		if (XppType == g_DeviceType_Gamepad) {
+			return true;
+		}
+	}
+	break;
+
+	case XBOX_INPUT_DEVICE::STEEL_BATTALION_CONTROLLER: {
+		if (XppType == g_DeviceType_SBC) {
 			return true;
 		}
 	}
@@ -149,7 +157,7 @@ bool ConstructHleInputDevice(int Type, int Port)
         g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucType = XINPUT_DEVTYPE_STEELBATTALION;
         g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucSubType = XINPUT_DEVSUBTYPE_GC_GAMEPAD_ALT;
         g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucInputStateSize = sizeof(SBCInput);
-        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucFeedbackSize = sizeof(SBCOutput);
+        g_XboxControllerHostBridge[Port].XboxDeviceInfo.ucFeedbackSize = 0x14;
         g_XboxControllerHostBridge[Port].XboxDeviceInfo.dwPacketNumber = 0;
 	}
 	break;
